@@ -32,33 +32,33 @@ public class TrackingController {
     /**
      * Gets next tracking number.
      *
-     * @param origin_country_id      the origin country id
-     * @param destination_country_id the destination country id
+     * @param originCountryId      the origin country id
+     * @param destinationCountryId the destination country id
      * @param weight                 the weight
-     * @param created_at             the created at
-     * @param customer_id            the customer id
-     * @param customer_name          the customer name
-     * @param customer_slug          the customer slug
+     * @param createdAt             the created at
+     * @param customerId            the customer id
+     * @param customerName          the customer name
+     * @param customerSlug          the customer slug
      * @return the next tracking number
      */
     @GetMapping(GENERATE_NEXT_TRACKING_NUMBER)
     public Mono<TrackingNumberResponse> getNextTrackingNumber(
-            @RequestParam String origin_country_id,
-            @RequestParam String destination_country_id,
+            @RequestParam String originCountryId,
+            @RequestParam String destinationCountryId,
             @RequestParam double weight,
-            @RequestParam Instant created_at,
-            @RequestParam UUID customer_id,
-            @RequestParam String customer_name,
-            @RequestParam String customer_slug
+            @RequestParam Instant createdAt,
+            @RequestParam UUID customerId,
+            @RequestParam String customerName,
+            @RequestParam String customerSlug
     ) {
         TrackingNumberRequest request = new TrackingNumberRequest(
-                origin_country_id,
-                destination_country_id,
+                originCountryId,
+                destinationCountryId,
                 weight,
-                created_at,
-                customer_id,
-                customer_name,
-                customer_slug
+                createdAt,
+                customerId,
+                customerName,
+                customerSlug
         );
         logger.info(GET_TRACKING_NUMBER, request);
         return trackingService.generateTrackingNumber(request);
